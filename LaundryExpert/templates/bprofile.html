@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+{% load widget_tweaks %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet"
+        href="{% static 'b.reg_assets/assets/fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+    <link rel="stylesheet" href="{% static 'b.reg_assets/assets/vendor/nouislider/nouislider.min.css' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'b.reg_assets/assets/css/style.css' %}">
+
+
+</head>
+
+<body>
+
+    <div class="main">
+
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-img">
+                    <img src="{% static 'b.reg_assets/assets/images/form-img.jpg' %}" alt="">
+                    <div class="signup-img-content">
+                        <h2>Register now </h2>
+                        <p>while seats are available !</p>
+                    </div>
+                </div>
+                <div class="signup-form">
+                    <form method="POST" class="register-form" action=""  id="register-form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <label for="first_name" class="required">User Name</label>
+                                    {% render_field form.username class="form-control" placeholder="Create a unique username" %}
+                                </div>
+                                <div class="form-input">
+                                    <label for="first_name" class="required">Shop Name</label>
+                                    {% render_field form.first_name class="form-control" placeholder="Enter Shopname" %}
+                                </div>
+                                <div class="form-input">
+                                    <div class="label-flex">
+                                        <label for="last_name" class="required">Phone Number</label>
+                                        <!-- <a href="#" class="form-link">Will not be shared with customers</a> -->
+                                    </div>
+                                    {% render_field buserForm1.mobile class="form-control" pattern="[0-9]{10}" placeholder="Please enter your 10 digitphone number" %}
+                                </div>
+                                <div class="form-input">
+                                    <label for="company" class="required">Email1</label>
+                                    {% render_field form.email class="form-control" placeholder="example@example.com" %}
+                                </div>
+                                <div class="form-input">
+                                    <label for="company" class="required">Password</label>
+                                    {% render_field form.password class="form-control"  placeholder="Password must include upper and lower case letters,symbols and numbers" %}
+                                </div>
+                                
+
+                                <div class="form-input">
+                                    <div class="label-flex">
+                                        <label for="last_name" class="required">Upload Image</label>
+                                        <p class="form-link">Add image of your shop</p>
+                                    </div>
+                                    {% render_field buserForm1.business_pic class="form-control" placeholder="Optional" %}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <div class="label-flex">
+                                        <label for="last_name" class="required">Contact Person</label>
+                                        <p class="form-link">Will not be shared with anyone</p>
+                                    </div>
+                                    {% render_field  buserForm1.contactname class="form-control" placeholder="Enter Contact Person" %}
+                                </div>                               
+                                <div class="form-input">
+                                    <label for="chequeno" class="required">Address</label>
+                                    {% render_field buserForm1.address class="form-control" placeholder="Enter Contact Person" %}
+                                </div> 
+                                <div class="form-input">
+                                    <label for="chequeno" class="required">License No</label>
+                                    {% render_field buserForm1.lic_no class="form-control" placeholder="Enter License No" %}
+                                </div>   <br><br><br><br><br><br><br>                             
+                                <!-- <div class="form-radio">
+                                    <div class="label-flex">
+                                        <label for="payment">Payment Method</label>
+                                        <a href="#" class="form-link">You can cgange later</a>
+                                    </div>
+                                    <div class="form-radio-group">
+                                        <div class="form-radio-item">
+                                            <input type="radio" name="payment" id="cash" checked>
+                                            <label for="cash">Flexible</label>
+                                            <span class="check"></span>
+                                        </div>
+                                        <div class="form-radio-item">
+                                            <input type="radio" name="payment" id="cheque">
+                                            <label for="cheque">Cash Only</label>
+                                            <span class="check"></span>
+                                        </div>
+
+                                    </div>
+                                </div> -->
+                                <div class="form-submit"><br><br>
+                                    <input type="submit" value="Submit" class="submit" id="submit" name="submit" />
+                                    <input type="submit" value="Reset" class="submit" id="reset" name="reset" />
+                                </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="{% static 'b.reg_assets/assets/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'b.reg_assets/assets/vendor/nouislider/nouislider.min.js' %} "></script>
+    <script src="{% static 'b.reg_assets/assets/vendor/wnumb/wNumb.js' %}"></script>
+    <script src="{% static 'b.reg_assets/assets/vendor/jquery-validation/dist/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'b.reg_assets/assets/vendor/jquery-validation/dist/additional-methods.min.js' %}"></script>
+    <script src="{% static 'b.reg_assets/assets/js/main.js' %}"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>

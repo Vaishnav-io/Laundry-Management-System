@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+{% load widget_tweaks %}
+
+<head>
+	<meta charset="utf-8">
+	<title>Form-v9 by Colorlib</title>
+	<!-- called the below css file from index_assets only to display -class="alert alert-warning"-   -->
+	<link href="{% static 'index_assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- Font-->
+	<link rel="stylesheet" type="text/css" href="{% static 'd.reg_assets/css/nunito-font.css' %}">
+	<!-- Main Style Css -->
+    <link rel="stylesheet" href="{% static 'd.reg_assets/css/style.css' %}"/>
+</head>
+<body class="form-v9">
+	<div class="page-content">
+		<div class="form-v9-content" style="background-image: url('/static/d.reg_assets/images/form-v9.jpg')">
+			{% if messages %}
+				<div class="alert alert-warning" role="alert">
+				  There was a mistake on our part. We apologize for the inconvenience.<br> Please <a href="{{ request.get_full_path }}" class="alert-link">Try again</a>
+				</div>
+			{% endif %}			
+<!-- {% if messages %}
+	<ul class="form-detail">
+		{% for message in messages %}
+			<div {% if message.tags %} class="form-v9" {% endif %}><p> {{ message }} </p>
+			<a class="" href="{{ request.get_full_path }}"><b style="color: rgba(255, 255, 255, 0.856) ">Retry</b></a></div>
+		{% endfor %}
+	</ul>
+{% endif %} -->
+			<form class="form-detail" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				<h2>Registration Form</h2>
+				<div class="form-row-total">
+					<div class="form-row">
+						<!-- <input type="text" name="full-name" id="full-name" class="input-text" placeholder="Your Name" required> -->
+						{% render_field form.first_name class="input-text" placeholder=" enter your name" %}
+					</div>
+					<div class="form-row">
+						<!-- <input type="text" name="your-email" id="your-email" class="input-text" placeholder="Your Phone"> -->
+						{% render_field duserForm1.mobile pattern="[0-9]{10}" class="input-text" placeholder="Please enteryour 10 digit phone number" %}
+					</div>
+				</div>
+				<div class="form-row-total">
+					<div class="form-row">
+						<!-- <input type="text" name="your-email" id="your-email" class="input-text" placeholder="Your Email" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" -->
+						{% render_field form.email class="input-text" placeholder="example@example.com" %}
+					</div>
+					<div class="form-row">
+						<!-- <input type="password" name="comfirm-password" id="comfirm-password" class="input-text" placeholder="username" required> -->
+						{% render_field form.username class="input-text" placeholder="Create a unique username" %}
+					</div>
+				</div>
+
+				<div class="form-row-total">
+					<div class="form-row">
+						<!-- <input type="text" name="your-email" id="your-email" class="input-text" placeholder="Your address" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}"> -->
+						{% render_field duserForm1.address class="input-text" placeholder="Please enter your address" %}
+					</div>
+					<div class="form-row">
+						<!-- <input type="password" name="comfirm-password" id="comfirm-password" class="input-text" placeholder="profile pic" required> -->
+						{% render_field duserForm1.delivery_pic class="input-text" placeholder="Choose a profile Picture" %}
+					</div>
+				</div>
+
+
+				<div class="form-row-total">
+					<div class="form-row">
+						<!-- <input type="text" name="your-email" id="your-email" class="input-text" placeholder="Your address" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}"> -->
+						{% render_field duserForm1.lic_no class="input-text" placeholder="Enter your Licence number" %}
+					</div>
+					<div class="form-row">
+						<!-- <input type="password" name="comfirm-password" id="comfirm-password" class="input-text" placeholder="profile pic" required> -->
+						{% render_field duserForm1.lic_pic class="input-text" placeholder="Choose a profile Picture" %}
+					</div>
+					
+				</div>
+				
+			{% render_field form.password  class="input-text" placeholder="Password must include upper and lower case letters,symbols and numbers" %}
+				
+				<div class="form-row-last">
+					<input type="submit" name="register" class="register" value="Register">
+				</div>
+			</form>
+
+
+		</div>
+	</div>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

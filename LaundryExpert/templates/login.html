@@ -1,0 +1,158 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+{% load widget_tweaks %}
+
+<head>
+	<!-- Favicons changed path to obtain favicon from index template's asset-->
+	<link href="{% static 'index_assets/img/favicon.png' %}" rel="icon">
+	<link href="{% static 'index_assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+	<title>Laundry Dazzle | Login</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="{% static 'c.login_assets/css/style.css' %}">
+
+</head>
+
+<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">Laundry Dazzle</h2>
+					<!-- {% if messages %}
+						<div class="container alert alert-success" role="alert">
+						Your account has been created! Please log in to continue...
+						</div>
+					{% endif %} -->
+
+						
+					<!-- {% if messages %}
+					{% for message in messages %}
+					<div class="container alert alert-{{ message.tags }}" role="alert">
+					{{ message }}
+					</div>
+					{% endfor %}
+					{% endif %} -->
+
+
+
+					{% if messages %}
+					{% for message in messages %}
+					  {% if message.tags == "warning" %}
+						<div class="alert alert-warning alert-dismissible fade show" role="alert">
+						  {{ message }}
+						  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>
+					  {% else %}
+						<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+						  {{ message }}
+						  <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+						  <!-- <a href="{% url 'laundry:login' %}" class="btn btn-white btn-outline-white">Ok</a> -->
+						</div>
+					  {% endif %}
+					{% endfor %}
+				  {% endif %}
+
+				  {% if invalid_login %}
+  				<div class="container alert alert-danger" role="alert">
+    				Invalid username or password. Please try again.
+ 				 </div>
+				{% endif %}
+				  
+
+
+
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-12 col-lg-10">
+					<div class="wrap d-md-flex">
+						<div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
+							<div class="text w-100">
+								<h2>Login to your Laundry Buddy</h2>
+								<p>Don't have an account ?</p>
+								<a href="{% url 'laundry:cregistration' %}" class="btn btn-white btn-outline-white">Sign Up Here</a>
+								<a href="{% url 'laundry:index' %}" class="btn btn-white btn-outline-white">Go Home</a>
+							</div>
+						</div>
+						<div class="login-wrap p-4 p-lg-5">
+							<div class="d-flex">
+								<div class="w-100">
+									<h3 class="mb-4">Sign In</h3>
+									<!-- {% if messages %}
+										<ul class="messages">
+											{% for message in messages %}
+												<div {% if message.tags %} class="{{ message.tags }}" {% endif %}><p> {{ message }} </p></div>
+											{% endfor %}
+										</ul>
+									{% endif %} -->
+								</div>
+								<!-- <div class="w-100">
+									<p class="social-media d-flex justify-content-end">
+										<a href="#"
+											class="social-icon d-flex align-items-center justify-content-center"><span
+												class="fa fa-facebook"></span></a>
+										<a href="#"
+											class="social-icon d-flex align-items-center justify-content-center"><span
+												class="fa fa-twitter"></span></a>
+									</p>
+								</div> -->
+							</div>
+							<form action="" method="POST" class="signin-form">
+								{% csrf_token %}
+								<div class="form-group mb-3">
+									<label class="label" for="password">username</label><br>
+									{% render_field form.username placeholder="Username" class="form-control" %}
+								</div>
+								<div class="form-group mb-3">
+									<label class="label" for="password">Password</label>
+									{% render_field form.password placeholder="Password" class="form-control" id="psw" %}
+								</div>
+								<div class="form-group">
+									<button type="submit" class="form-control btn btn-primary submit px-3">Sign
+										In</button>
+								</div>
+								<div class="form-group d-md-flex">
+									<div class="w-50 text-left">
+										<label class="checkbox-wrap checkbox-primary mb-0">Show Password
+											<input type="checkbox" unchecked onclick="myFunction()" >
+											<span class="checkmark"></span>
+										</label>
+									</div>
+									<div class="w-50 text-md-right">
+										<a href="">Forgot Password</a>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="{% static 'c.login_assets/js/jquery.min.js' %}"></script>
+	<script src="{% static 'c.login_assets/js/popper.js' %}"></script>
+	<script src="{% static 'c.login_assets/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'c.login_assets/js/main.js' %}"></script>
+	<script>
+		function myFunction() {
+		  var x = document.getElementById("psw");
+		  if (x.type === "password") {
+			x.type = "text";
+		  } else {
+			x.type = "password";
+		  }
+		}
+	</script>
+
+</body>
+
+</html>

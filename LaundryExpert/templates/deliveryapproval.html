@@ -1,0 +1,212 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>DevFolio - Developer Portfolio Template</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Free Website Template" name="keywords">
+        <meta content="Free Website Template" name="description">
+
+        <!-- Favicon -->
+        <link href="{% static 'd.dash_assets/img/favicon.ico' %}" rel="icon">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="{% static 'd.dash_assets/lib/animate/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'd.dash_assets/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+        <link href="{% static 'd.dash_assets/lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="{% static 'd.dash_assets/css/style.css' %}" rel="stylesheet">
+    </head>
+
+    <body data-spy="scroll" data-target=".navbar" data-offset="51">
+        <!-- Nav Bar Start -->
+        <div class="navbar navbar-expand-lg bg-light navbar-light">
+            <div class="container-fluid">
+                <a href="index.html" class="navbar-brand">DevFolio</a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto">
+                        <a href="{% url 'laundry:ddashboard' %}" class="nav-item nav-link active">Home</a>
+                        <a href="{% url 'laundry:dprofile' %}" class="nav-item nav-link active" >Profile</a>
+                        <a href="{% url 'laundry:deliveryapproval' %}" class="nav-item nav-link active">PickUp</a>
+                        <a href="{% url 'laundry:logout' %}" class="nav-item nav-link active">Logout</a>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Nav Bar End -->
+
+
+        
+
+
+        <!-- Team Start -->
+        <div class="team" id="team">
+            <div class="container">
+                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                    <p>My Pickup list</p>
+                    <h2>Accept/Decliine your order</h2>
+                </div>
+                <div class="row">
+                    {% for al in data %}
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.0s">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="{% static 'd.dash_assets/img/team-1.jpg' %}" alt="Image">
+                            </div>
+                            
+                            <div class="team-text">
+                                <h2>{{al.userC.username}}</h2>
+                                <h4>{{al.clothingItems}}</h4>
+                                <h4>Phone : {{al.ph}}</h4>
+                                <h4>Address : {{al.address}}</h4>
+                                
+                                <div class="hero-btn">
+                                    <a class="btn" style="color: azure" href="{% url 'laundry:acceptOrder' %}?id={{al.id}}">Accept</a><br><br>
+                                    <a class="btn" style="color: azure" href="{% url 'laundry:rejectOrder' %}?id={{al.id}}">Decline</a><br><br>
+                                    <!-- <a class="btn" href=""><i class="fab fa-facebook-f"></i></a> -->
+                                    <!-- <a class="btn" href=""><i class="fab fa-linkedin-in"></i></a>
+                                    <a class="btn" href=""><i class="fab fa-instagram"></i></a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                <h5>You have no pending orders</h5>
+                    {% endfor %}
+                    <!-- <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="{% static 'd.dash_assets/img/team-2.jpg' %}" alt="Image">
+                            </div>
+                            <div class="team-text">
+                                <h2>Dylan Adams</h2>
+                                <h4>Web Developer</h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet consec adipis elit. Etiam accum lacus
+                                </p>
+                                <div class="team-social">
+                                    <a class="btn" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn" href=""><i class="fab fa-linkedin-in"></i></a>
+                                    <a class="btn" href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="{% static 'd.dash_assets/img/team-3.jpg' %}" alt="Image">
+                            </div>
+                            <div class="team-text">
+                                <h2>Jennifer Page</h2>
+                                <h4>Apps Designer</h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet consec adipis elit. Etiam accum lacus
+                                </p>
+                                <div class="team-social">
+                                    <a class="btn" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn" href=""><i class="fab fa-linkedin-in"></i></a>
+                                    <a class="btn" href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="{% static 'd.dash_assets/img/team-4.jpg' %}" alt="Image">
+                            </div>
+                            <div class="team-text">
+                                <h2>Josh Dunn</h2>
+                                <h4>Apps Developer</h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet consec adipis elit. Etiam accum lacus
+                                </p>
+                                <div class="team-social">
+                                    <a class="btn" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn" href=""><i class="fab fa-linkedin-in"></i></a>
+                                    <a class="btn" href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+        <!-- Team End -->
+        
+        
+
+
+        <!-- Footer Start -->
+        <div class="footer wow fadeIn" data-wow-delay="0.3s">
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="footer-info">
+                        <h2>Kate Winslet</h2>
+                        <h3>123 Street, New York, USA</h3>
+                        <div class="footer-menu">
+                            <p>+012 345 67890</p>
+                            <p>info@example.com</p>
+                        </div>
+                        <div class="footer-social">
+                            <a href=""><i class="fab fa-twitter"></i></a>
+                            <a href=""><i class="fab fa-facebook-f"></i></a>
+                            <a href=""><i class="fab fa-youtube"></i></a>
+                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href=""><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="container copyright">
+                    <p>&copy; <a href="#">Your Site Name</a>, All Right Reserved | Designed By <a href="https://htmlcodex.com">HTML Codex</a></p>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+        
+        
+        <!-- Back to top button -->
+        <a href="#" class="btn back-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        
+        <!-- Pre Loader -->
+        <div id="loader" class="show">
+            <div class="loader"></div>
+        </div>
+
+        
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'd.dash_assets/lib/easing/easing.min.js' %}"></script>
+        <script src="{% static 'd.dash_assets/lib/wow/wow.min.js' %}"></script>
+        <script src="{% static 'd.dash_assets/lib/waypoints/waypoints.min.js' %}"></script>
+        <script src="{% static 'd.dash_assets/lib/typed/typed.min.js' %}"></script>
+        <script src="{% static 'd.dash_assets/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'd.dash_assets/lib/isotope/isotope.pkgd.min.js' %}"></script>
+        <script src="{% static 'd.dash_assets/lib/lightbox/js/lightbox.min.js' %}"></script>
+        
+        <!-- Contact Javascript File -->
+        <script src="{% static 'd.dash_assets/mail/jqBootstrapValidation.min.js' %}"></script>
+        <script src="{% static 'd.dash_assets/mail/contact.js' %}"></script>
+
+        <!-- Template Javascript -->
+        <script src="{% static 'd.dash_assets/js/main.js' %}"></script>
+    </body>
+</html>
