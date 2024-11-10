@@ -51,7 +51,10 @@ Start the server
 ## Support
 
 For support or suggestions, join my Discord Server.
-https://discord.gg/yNKKCqkSAX
+
+<a href="https://discord.gg/yNKKCqkSAX" target="_blank">
+  <img src="https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white" alt="Join Discord"">
+</a>
 
 
 ## Feedback
